@@ -17,27 +17,25 @@ export const FileList: React.FC<FileListProps> = ({
 }) => {
   if (files.length === 0) {
     return (
-      <div className="bg-white rounded-xl shadow-sm border border-slate-200">
-        <div className="p-8 text-center text-slate-500">
-          <div className="mb-4">
-            <FileText className="mx-auto text-slate-300" size={64} />
-          </div>
-          <h3 className="text-lg font-medium mb-2">No MDX files found</h3>
-          <p className="text-slate-400">Upload your first MDX file to get started</p>
+      <div className="bg-white rounded-lg shadow-sm border border-slate-200">
+        <div className="p-6 sm:p-8 text-center text-slate-500">
+          <FileText className="mx-auto text-slate-300" size={48} />
+          <h3 className="text-base sm:text-lg font-medium mt-4 mb-1">No MDX files found</h3>
+          <p className="text-sm text-slate-400">Upload your first MDX file to get started</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-slate-200">
-      <div className="p-6 border-b border-slate-200">
-        <h2 className="text-xl font-semibold text-slate-800 flex items-center gap-2">
-          <FileText className="text-blue-500" size={24} />
+    <div className="bg-white rounded-lg shadow-sm border border-slate-200">
+      <div className="p-4 sm:p-6 border-b border-slate-200">
+        <h2 className="text-base sm:text-lg font-semibold text-slate-800 flex items-center gap-2">
+          <FileText className="text-blue-500" size={20} />
           MDX Files ({files.length})
         </h2>
       </div>
-      <div className="divide-y divide-slate-200">
+      <div className="divide-y divide-slate-200 text-sm sm:text-base max-h-[60vh] overflow-y-auto">
         {files.map((filename) => (
           <FileItem
             key={filename}

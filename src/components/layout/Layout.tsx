@@ -3,18 +3,13 @@ import { Header } from './Header';
 import { Navigation } from './Navigation';
 import { Notification } from '../common/Notification';
 import { useNotification } from '../../hooks/useNotification';
-import type { TabType } from '../../types/common';
 
 interface LayoutProps {
-  activeTab: TabType;
-  onTabChange: (tab: TabType) => void;
   hasSelectedFile: boolean;
   children: React.ReactNode;
 }
 
 export const Layout: React.FC<LayoutProps> = ({
-  activeTab,
-  onTabChange,
   hasSelectedFile,
   children,
 }) => {
@@ -35,11 +30,7 @@ export const Layout: React.FC<LayoutProps> = ({
 
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         <Header />
-        <Navigation
-          activeTab={activeTab}
-          onTabChange={onTabChange}
-          hasSelectedFile={hasSelectedFile}
-        />
+        <Navigation hasSelectedFile={hasSelectedFile} />
         <main>{children}</main>
       </div>
     </div>

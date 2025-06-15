@@ -1,6 +1,10 @@
 import { API_BASE_URL, API_KEY } from '../utils/constants';
 import type { UploadResponse, ListMDXResponse, DeleteResponse, ApiError } from '../types/api';
 
+interface ListImageResponse {
+  images: string[];
+}
+
 class ApiService {
   private baseURL: string;
   private apiKey: string;
@@ -55,6 +59,11 @@ class ApiService {
     return this.handleResponse<ListMDXResponse>(response);
   }
 
+  async listImageFiles(): Promise<ListImageResponse> {
+    const response = await fetch(`${this.baseURL}/list-image/`);
+    return this.handleResponse<ListImageResponse>(response);
+  }
+
   async getMDXContent(filename: string): Promise<string> {
     const response = await fetch(`${this.baseURL}/get-mdx/${encodeURIComponent(filename)}`);
     if (!response.ok) {
@@ -66,6 +75,18 @@ class ApiService {
   async deleteMDXFile(filename: string): Promise<DeleteResponse> {
     const response = await fetch(
       `${this.baseURL}/delete-mdx/?filename=${encodeURIComponent(filename)}`,
+      {
+        method: 'DELETE',
+        headers: this.getHeaders(),
+      }
+    );
+
+    return this.handleResponse<DeleteResponse>(response);
+  }
+
+  async deleteImageFile(filename: string): Promise<DeleteResponse> {
+    const response = await fetch(
+      `${this.baseURL}/delete-image/?filename=${encodeURIComponent(filename)}`,
       {
         method: 'DELETE',
         headers: this.getHeaders(),
