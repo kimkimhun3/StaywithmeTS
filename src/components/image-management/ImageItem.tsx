@@ -17,7 +17,7 @@ export const ImageItem: React.FC<ImageItemProps> = ({ filename, onDownload, onDe
         </div>
         <div>
           <span className="font-medium text-slate-800 block">{filename}</span>
-          <span className="text-sm text-slate-500">Image File</span>
+          <span className="text-sm text-slate-500">Image Filess</span>
         </div>
       </div>
       <ImageActions filename={filename} onDownload={onDownload} onDelete={onDelete} />
